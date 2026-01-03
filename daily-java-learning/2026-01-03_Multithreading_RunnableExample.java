@@ -1,21 +1,17 @@
-import java.lang.Thread;
-
-// Class that implements Runnable interface
-class SimpleTask implements Runnable {
-    // Method that contains the task to be performed
+public class Multithreading_RunnableExample implements Runnable {
+    // The run method to be executed in a new thread
     @Override
     public void run() {
-        System.out.println("Task is running in: " + Thread.currentThread().getName());
+        System.out.println("Thread is running: " + Thread.currentThread().getName());
     }
-}
 
-public class Multithreading_RunnableExample {
     public static void main(String[] args) {
-        // Creating a new thread with SimpleTask
-        Thread thread1 = new Thread(new SimpleTask(), "Thread-1");
-        Thread thread2 = new Thread(new SimpleTask(), "Thread-2");
-        
-        // Starting the threads
+        // Create a new thread using the Runnable interface
+        Multithreading_RunnableExample runnableExample = new Multithreading_RunnableExample();
+        Thread thread1 = new Thread(runnableExample);
+        Thread thread2 = new Thread(runnableExample);
+
+        // Start the threads
         thread1.start();
         thread2.start();
     }
