@@ -1,30 +1,22 @@
-import java.lang.Thread;
-
-// Class that extends Thread
-class MyThread extends Thread {
-    // Run method defines the thread's task
+public class Multithreading_CreatingThread extends Thread {
+    // Override the run method to define the thread's task
+    @Override
     public void run() {
         for (int i = 1; i <= 5; i++) {
-            System.out.println("Thread " + Thread.currentThread().getName() + ": " + i);
+            System.out.println("Thread: " + i);
             try {
-                // Sleep for 500 milliseconds
+                // Pause for a moment to simulate work
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
-}
 
-// Main class to test the thread
-public class Multithreading_CreatingThread {
     public static void main(String[] args) {
-        // Create two threads
-        MyThread thread1 = new MyThread();
-        MyThread thread2 = new MyThread();
-        
-        // Start the threads
-        thread1.start();
-        thread2.start();
+        // Create a new thread
+        Multithreading_CreatingThread myThread = new Multithreading_CreatingThread();
+        // Start the thread
+        myThread.start();
     }
 }
