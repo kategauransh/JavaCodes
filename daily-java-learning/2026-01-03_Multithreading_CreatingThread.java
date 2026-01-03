@@ -1,20 +1,30 @@
-public class Multithreading_CreatingThread {
-    public static void main(String[] args) {
-        // Create a new thread using the Thread class
-        Thread myThread = new Thread(new MyRunnable());
-        
-        // Start the thread
-        myThread.start();
-        
-        // Print a message from the main thread
-        System.out.println("Main thread is executing.");
+import java.lang.Thread;
+
+// Class that extends Thread
+class MyThread extends Thread {
+    // Run method defines the thread's task
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Thread " + Thread.currentThread().getName() + ": " + i);
+            try {
+                // Sleep for 500 milliseconds
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
 
-class MyRunnable implements Runnable {
-    @Override
-    public void run() {
-        // This code will run in the new thread
-        System.out.println("New thread is executing.");
+// Main class to test the thread
+public class Multithreading_CreatingThread {
+    public static void main(String[] args) {
+        // Create two threads
+        MyThread thread1 = new MyThread();
+        MyThread thread2 = new MyThread();
+        
+        // Start the threads
+        thread1.start();
+        thread2.start();
     }
 }
