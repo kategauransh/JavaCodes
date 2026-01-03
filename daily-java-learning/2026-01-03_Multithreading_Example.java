@@ -1,22 +1,16 @@
-public class MultithreadingExample {
-    public static void main(String[] args) {
-        // Create a new thread to run a task
-        Thread myThread = new Thread(new Task());
-        myThread.start(); // Start the thread
-    }
-}
-
-class Task implements Runnable {
-    @Override
+public class MultithreadingExample extends Thread {
+    // Method to run when the thread starts
     public void run() {
-        // Task that will run in a separate thread
-        for (int i = 1; i <= 5; i++) {
-            System.out.println("Task is running: " + i);
-            try {
-                Thread.sleep(1000); // Sleep for 1 second
-            } catch (InterruptedException e) {
-                System.out.println("Thread interrupted");
-            }
-        }
+        System.out.println("Thread " + Thread.currentThread().getName() + " is running.");
+    }
+
+    public static void main(String[] args) {
+        // Create two threads
+        MultithreadingExample thread1 = new MultithreadingExample();
+        MultithreadingExample thread2 = new MultithreadingExample();
+        
+        // Start the threads
+        thread1.start();
+        thread2.start();
     }
 }
